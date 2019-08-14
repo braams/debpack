@@ -1,2 +1,2 @@
 # debpack
-Tool for easy packing tiny Go services do deb
+Tool for easy packing tiny Go services to deb packages
