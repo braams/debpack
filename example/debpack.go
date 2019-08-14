@@ -13,6 +13,8 @@ func main() {
 	p.Build("cmd/debpack.go")
 	p.MaintainerName = "maintainer"
 	p.MaintainerEmail = "maintainer@email.com"
+	p.Description = "Package builder"
+	p.SetMeta()
 	p.SetDefaultFilenames()
 	p.SetDefaultFiles()
 	p.AddControls()

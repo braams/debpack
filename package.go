@@ -35,19 +35,23 @@ type Package struct {
 
 func NewPackage(name string, version string) *Package {
 	self := Package{Name: name, Version: version}
-	self.User = self.Name
 	self.deb = debpkg.New()
+
+	return &self
+}
+
+func (self *Package) SetMeta() {
+
+	self.User = self.Name
 	self.deb.SetName(self.Name)
-	self.deb.SetVersion(version)
-	self.deb.SetArchitecture("amd64")
 	self.deb.SetVersion(self.Version)
-	self.deb.SetMaintainer(self.MaintainerName)
-	self.deb.SetMaintainerEmail(self.MaintainerEmail)
+	self.deb.SetArchitecture("amd64")
 	self.deb.SetSection("misc")
 	self.deb.SetPriority(debpkg.PriorityOptional)
 	self.deb.SetShortDescription(self.Description)
 	self.deb.SetDepends("lsb-base")
-	return &self
+	self.deb.SetMaintainer(self.MaintainerName)
+	self.deb.SetMaintainerEmail(self.MaintainerEmail)
 }
 
 func (self *Package) Build(entrypoint string) {
